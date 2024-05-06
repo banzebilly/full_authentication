@@ -6,7 +6,7 @@ from django.contrib import messages
 
 from django.views.generic import View
 
-# urls for getting current the urls of this web site site and activate user account
+# urls for getting current site  and activate user account
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.urls import NoReverseMatch, reverse
@@ -21,9 +21,7 @@ from django.core.mail.message import EmailMessage
 # for sending email fast
 from threading import Thread
 # class TokenGenerator getting token from utils.py file in the same app
-from .utils import TokenGenerator, generate_token
-from .utils import EmailThread
-
+from .utils import TokenGenerator, generate_token, EmailThread
 
 #==================import resetpassword generators====================
 #you will be using this one to reset password
