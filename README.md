@@ -1,0 +1,1 @@
+The primary goal of this project is to provide a robust and secure authentication system for web applications built using Django. By implementing essential features such as user registration, login, account activation, and password reset, the project aims to streamline the user authentication process while ensuring data security and privacy.
