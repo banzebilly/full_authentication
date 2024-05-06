@@ -1,0 +1,5 @@
+pip freeze > requirements.txt
+
+
+for postgres to work you need to install
+:::::pip install psycopg2

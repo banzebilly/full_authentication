@@ -1,0 +1,65 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTRATION   ================================= -->
+    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;
+         box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5) !important;">
+        <div class="card-body">
+            <div class="billy" style="background: blue;">
+                
+                <h4 class="card-title mb-4 text-center tex-white p-2" style="font-style: italic; font-family: 'Arial', sans-serif; color: white;">BILLY REGISTER <i class="fas fa-user-plus" style="color: blue;"></i></h4>
+                <br>
+                {% include "includes/alert.html" %}
+               
+            <!--form start here-->
+            <form action="{% url 'handle_register' %}" method="POST">
+                {% csrf_token %}
+
+                <!--bootstrap warnig -->
+
+
+             
+                
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope" style="color: blue;"></i></span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Email Address" name="email">
+                    </div>
+                </div> <!-- form-group// -->
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock" style="color: blue;"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password" name="pass1" id= "pass1">
+                    </div>
+                </div> <!-- form-group// -->
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock" style="color: blue;"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Confirm Password" name="pass2" id="pass2"> </div>
+                </div> <!-- form-group// -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary" style="width: 150px;"> Register <i class="fas fa-user-plus" style="color: white;"></i> </button>
+                </div>
+            </form>
+        </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+    <p class="text-center mt-4">Already have an account? <a href="{% url 'handle_login' %}">Login</a></p>
+    <br><br>
+ 
+<!-- ============================ COMPONENT REGISTRATION  END.// ================================= -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}
