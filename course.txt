@@ -3,3 +3,200 @@ pip freeze > requirements.txt
 
 for postgres to work you need to install
 :::::pip install psycopg2
+
+3333333333333333push to github using git333333333333333333333333333333333333
+
+cd your_project_directory
+git init
+
+git add .
+git commit -m "Initial commit: Django project setup"
+
+git remote add origin https://github.com/your_username/your_repository_name.git
+
+git push -u origin main
+
+
+
+
+
+
+
+
+
+44444444444444444444after you you ve made chage to your repository how can you update using git444444444444444444444444444444
+git status
+
+
+git add .
+
+
+git commit -m "Your descriptive commit message here"
+
+
+git push origin <branch-name>
+
+
+
+
+2222222222222222222222Deploying djanog app to AWS what you need to instal for the app to work22222222222222
+install: 
+   1 pip install django
+    
+    MySQL Connector: Install the MySQL connector to interact with your MySQL database.
+   2 pip install mysqlclient
+   
+   Django Storages: If you're using Amazon S3 for storing static files and media files, you can install Django Storages.
+   Copy code
+   3 pip install django-storages
+
+   Boto3: Boto3 is the AWS SDK for Python. 
+   It allows Python developers to write software that uses services like Amazon S3 and Amazon EC2.
+
+   4 pip install boto3
+
+django-environ: This package allows you to utilize environment variables for configuration,
+ which is a recommended practice for managing sensitive information like AWS credentials.
+
+ 5 pip install django-environ
+
+gunicorn: Gunicorn is a WSGI HTTP server for Unix. It's 
+commonly used to deploy Django applications.
+
+
+6 pip install gunicorn
+  
+django-cors-headers: If your Django application requires cross-origin resource
+ sharing (CORS), you can use this package.
+
+7 pip install django-cors-headers
+
+django-debug-toolbar: A helpful tool for debugging Django applications during development.
+8 pip install django-debug-toolbar
+
+boto3: Boto3 is the AWS SDK for Python. It allows 
+Python developers to write software that makes use of services like Amazon S3 and Amazon EC2.
+
+9  pip install boto3
+
+django-storages: This package enables you to store static 
+and media files in various storage backends,
+including Amazon S3.
+
+pip install django-storages
+
+
+
+222222222222222222222how can you update the settings.py before deploment,and after installing those packages
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('MYSQL_DB_NAME'),
+        'USER': config('MYSQL_DB_USER'),
+        'PASSWORD': config('MYSQL_DB_PASSWORD'),
+        'HOST': config('MYSQL_DB_HOST'),
+        'PORT': config('MYSQL_DB_PORT', default='3306'),
+    }
+}
+
+# Password validation
+# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# Internationalization
+# https://docs.djangoproject.com/en/5.0/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [
+    BASE_DIR / 'ermi_proj/static',
+]
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Django messages configuration
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+# SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django Storages configuration
+if config('USE_S3', default=False, cast=bool):
+    # Use Amazon S3 for storage
+    AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
+    AWS_DEFAULT_ACL = None  # Optionally, set permissions as needed
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # Configure static files storage
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+
+    # Configure media files storage
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
+    555555555555555555555.env file5555555555555555555555555555555555555555555555555555555555555555555555555555555
+
+
+
+SECRET_KEY=your_secret_key
+DEBUG=True
+EMAIL_HOST_USER=your_email
+EMAIL_HOST_PASSWORD=your_password
+
+# MySQL database settings
+MYSQL_DB_NAME=your_mysql_database_name
+MYSQL_DB_USER=your_mysql_username
+MYSQL_DB_PASSWORD=your_mysql_password
+MYSQL_DB_HOST=your_mysql_host
+MYSQL_DB_PORT=3306
+
+# AWS S3 settings (if using S3 for static and media files storage)
+USE_S3=False
+AWS_ACCESS_KEY_ID=your_aws_access_key_id
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
+AWS_STORAGE_BUCKET_NAME=your_s3_bucket_name
+AWS_S3_REGION_NAME=your_s3_region_name
+
